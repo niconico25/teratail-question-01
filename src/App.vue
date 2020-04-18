@@ -1,21 +1,41 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      <input v-model="newArrayValue">
+      <button @click="$store.commit('insertToArray', Number(newArrayValue))">
+        Button
+      </button>
+      <div>
+        {{ $store.state.array }}
+      </div>
+      <div>
+        {{ $store.getters.sumArray }}
+      </div>
+    </div>
+    <div>
+      <input v-model="newTreeValue">
+      <button @click="$store.commit('insertToTree', Number(newTreeValue))">
+        Button
+      </button>
+      <div>
+        {{ $store.state.root }}
+      </div>
+      <div>
+        {{ $store.getters.sumTree }}
+      </div>
+    </div>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  data () {
+    return {
+      newArrayValue: undefined,
+      newTreeValue: undefined
+    }
   }
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
